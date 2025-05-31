@@ -3,11 +3,26 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: bisque;
 
 }
 
-#grid-create {
-    padding: 30px;
+#title {
+    font-family: 'Monaco', 'Brush Script MT', 'Baskerville';
+    font-size: 50px;
+}
+
+.button-box{
+    display: flex;
+    flex: auto;
+    justify-content: center;
+}
+
+#grid-create,
+#colourful,
+#pencil,
+#clear {
+    padding: 15px;
     margin: 10px;;
 }
 
@@ -16,16 +31,17 @@ body{
 #grid-container {
     display: flex;
     flex-wrap: wrap;
-    height: 1000px;
-    width: 1000px;
+    height: 850px;
+    width: 850px;
+    border: solid, black, 5px;
 
 }
 
 .grid-item {
-    background-color: tomato;
+    background-color: darkkhaki;
     gap: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid, black, 1px;;
+   
 }

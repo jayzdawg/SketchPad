@@ -27,6 +27,19 @@ function getUserEntry() {
 
 }
 
+function getRandomColor() {
+let r = Math.floor(Math.random() * 256); // Random between 0-255
+let g = Math.floor(Math.random() * 256); // Random between 0-255
+let b = Math.floor(Math.random() * 256); // Random between 0-255
+return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+  const clear = document.getElementById('clear'); //clear button
+  clear.addEventListener('click', () => {
+  createGrid(16 * 16);
+});
+
+
 function createGrid(numberOfItems) {
   container.innerHTML = " ";
   const columns = Math.sqrt(numberOfItems);
@@ -39,22 +52,43 @@ for (let i = 0; i < numberOfItems; i++) {
   container.appendChild(item); 
   item.style.width = `calc(100% / ${columns})`;
   item.style.height = item.style.width;
-  item.style.border = 'solid, black, 1px';
+
 
 }
 
 
+
   const items = document.querySelectorAll('.grid-item');
   items.forEach(item => {
-  item.addEventListener('mouseenter', () => {
-  item.style.backgroundColor = 'red';
+
+    let mode = 'pencil';
+
+    const colour = document.getElementById('colourful'); //colour mode
+    colour.addEventListener('click', () => {   
+    mode = 'colourful'; 
+    });
+
+    const pencil = document.getElementById('pencil'); //pencil mode
+    pencil.addEventListener('click', () => {
+      mode = 'pencil';
+    });
+  
+    item.addEventListener('mouseenter', () => {
+      item.style.backgroundColor = 'black';
   
   });
 
   item.addEventListener('mouseleave', () => {  
-  item.style.backgroundColor = 'blue';
-  let currentOpacity = parseInt(item.dataset.opacity);
-      currentOpacity += 10;
+      if (mode === 'pencil'){
+      item.style.backgroundColor = 'black';
+      } else if (mode === 'colourful'){
+      item.style.backgroundColor = getRandomColor();
+      }
+    
+
+  
+  let currentOpacity = parseInt(item.dataset.opacity); //Gradual opacity code
+      currentOpacity += 15;
       if (currentOpacity <= 100) { // Cap at 100%
         item.dataset.opacity = currentOpacity;
         item.style.opacity = currentOpacity / 100; // 0.0 to 1.0
